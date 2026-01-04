@@ -1,1 +1,31 @@
-hello world
+---
+layout: default
+title: Blog
+---
+<section class="blog-section">
+  <h1 class="page-title">Blog</h1>
+
+  {% if site.posts.size > 0 %}
+    <ul class="post-list">
+      {% for post in site.posts %}
+        <li class="post-item">
+          <h2 class="post-item-title">
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          </h2>
+          <div class="post-item-meta">
+            <time datetime="{{ post.date | date_to_xmlschema }}">
+              {{ post.date | date: "%B %d, %Y" }}
+            </time>
+          </div>
+          {% if post.excerpt %}
+            <p class="post-item-excerpt">{{ post.excerpt | strip_html | truncate: 160 }}</p>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <div class="empty-state">
+      <p>No posts yet. Check back soon!</p>
+    </div>
+  {% endif %}
+</section>

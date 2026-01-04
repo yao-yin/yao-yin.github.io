@@ -1,0 +1,10 @@
+<header class="site-header">
+  <div class="header-container">
+    <a href="{{ '/' | relative_url }}" class="site-title">{{ site.title }}</a>
+    <nav class="site-nav">
+      <a href="{{ '/' | relative_url }}" class="nav-link {% if page.url == '/' %}active{% endif %}">Blog</a>
+      <a href="{{ '/dashboard' | relative_url }}" class="nav-link {% if page.url == '/dashboard/' or page.url == '/dashboard' %}active{% endif %}">Dashboard</a>
+      <a href="{{ '/about' | relative_url }}" class="nav-link {% if page.url == '/about/' or page.url == '/about' %}active{% endif %}">About</a>
+    </nav>
+  </div>
+</header>
