@@ -15,6 +15,14 @@ layout: default
         <a href="{{ '/dashboard/2024' | relative_url }}" class="sidebar-link {% if page.url contains '/2024' %}active{% endif %}">2024</a>
       </nav>
     </div>
+
+    {% assign latest_week = site.data.weekly | first %}
+    {% if latest_week %}
+    <a href="{{ '/weekly' | relative_url }}" class="sidebar-weekly-link">
+      <span class="sidebar-weekly-label">Latest Weekly</span>
+      <span class="sidebar-weekly-info">Week {{ latest_week.week }} &middot; {{ latest_week.date }}</span>
+    </a>
+    {% endif %}
   </aside>
 
   <main class="dashboard-main">
