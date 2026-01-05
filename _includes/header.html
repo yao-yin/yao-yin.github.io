@@ -3,21 +3,8 @@
     <a href="{{ '/' | relative_url }}" class="site-title">{{ site.title }}</a>
     <nav class="site-nav">
       <a href="{{ '/' | relative_url }}" class="nav-link {% if page.url == '/' %}active{% endif %}">Blog</a>
-
-      <div class="nav-dropdown">
-        <span class="nav-link dropdown-trigger {% if page.url contains 'dashboard' %}active{% endif %}">
-          Dashboard <span class="dropdown-arrow">▾</span>
-        </span>
-        <div class="dropdown-menu">
-          <a href="{{ '/dashboard/2026-h1' | relative_url }}" class="dropdown-item {% if page.url contains '2026-h1' %}active{% endif %}">2026 H1</a>
-          <a href="{{ '/dashboard/2026-h2' | relative_url }}" class="dropdown-item {% if page.url contains '2026-h2' %}active{% endif %}">2026 H2</a>
-          <a href="{{ '/dashboard/long-term' | relative_url }}" class="dropdown-item {% if page.url contains 'long-term' %}active{% endif %}">Long-term</a>
-          <div class="dropdown-divider"></div>
-          <a href="{{ '/dashboard/2025' | relative_url }}" class="dropdown-item {% if page.url contains '/2025' %}active{% endif %}">2025</a>
-          <a href="{{ '/dashboard/2024' | relative_url }}" class="dropdown-item {% if page.url contains '/2024' %}active{% endif %}">2024</a>
-        </div>
-      </div>
-
+      <a href="{{ '/dashboard/2026-h1' | relative_url }}" class="nav-link {% if page.url contains 'dashboard' %}active{% endif %}">Dashboard</a>
+      <a href="{{ '/weekly' | relative_url }}" class="nav-link {% if page.url contains 'weekly' %}active{% endif %}">Weekly</a>
       <a href="{{ '/about' | relative_url }}" class="nav-link {% if page.url == '/about/' or page.url == '/about' %}active{% endif %}">About</a>
     </nav>
   </div>

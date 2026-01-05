@@ -15,27 +15,6 @@ layout: default
         <a href="{{ '/dashboard/2024' | relative_url }}" class="sidebar-link {% if page.url contains '/2024' %}active{% endif %}">2024</a>
       </nav>
     </div>
-
-    <div class="sidebar-section">
-      <h3 class="sidebar-title">Weekly Top of Mind</h3>
-      {% assign latest_week = site.data.weekly | first %}
-      {% if latest_week %}
-        <div class="weekly-note">
-          <div class="weekly-date">Week {{ latest_week.week }} &middot; {{ latest_week.date }}</div>
-          <div class="weekly-content">{{ latest_week.note }}</div>
-          {% if latest_week.highlights.size > 0 %}
-            <ul class="weekly-highlights">
-              {% for item in latest_week.highlights %}
-                <li>{{ item }}</li>
-              {% endfor %}
-            </ul>
-          {% endif %}
-        </div>
-        <a href="{{ '/weekly' | relative_url }}" class="sidebar-link-small">View all weeks &rarr;</a>
-      {% else %}
-        <p class="sidebar-empty">No notes yet. Add to <code>_data/weekly.yml</code></p>
-      {% endif %}
-    </div>
   </aside>
 
   <main class="dashboard-main">
