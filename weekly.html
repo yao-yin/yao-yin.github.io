@@ -1,0 +1,37 @@
+---
+layout: default
+title: Weekly Top of Mind
+permalink: /weekly/
+---
+<section class="weekly-archive">
+  <header class="page-header">
+    <h1 class="page-title">Weekly Top of Mind</h1>
+    <p class="page-subtitle">A running log of weekly thoughts, focus areas, and highlights</p>
+  </header>
+
+  <div class="weekly-list">
+    {% for week in site.data.weekly %}
+      <article class="weekly-entry">
+        <header class="weekly-entry-header">
+          <h2 class="weekly-entry-title">Week {{ week.week }}</h2>
+          <time class="weekly-entry-date">{{ week.date }}</time>
+        </header>
+
+        <div class="weekly-entry-content">
+          <p>{{ week.note }}</p>
+
+          {% if week.highlights.size > 0 %}
+            <div class="weekly-entry-highlights">
+              <strong>Highlights:</strong>
+              <ul>
+                {% for item in week.highlights %}
+                  <li>{{ item }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>

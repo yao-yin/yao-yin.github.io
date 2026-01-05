@@ -2,8 +2,12 @@
 
 document.addEventListener('DOMContentLoaded', function() {
   updateTimeWidget();
+  updateHalfYearStatus();
   // Update every minute
-  setInterval(updateTimeWidget, 60000);
+  setInterval(function() {
+    updateTimeWidget();
+    updateHalfYearStatus();
+  }, 60000);
 });
 
 function updateTimeWidget() {
@@ -23,10 +27,6 @@ function updateTimeWidget() {
 
   // Calculate days and weeks remaining
   const msPerDay = 24 * 60 * 60 * 1000;
-  const msPerWeek = 7 * msPerDay;
-
-  // Check if we're in 2026
-  const isCurrentYear = now.getFullYear() === year;
 
   let daysRemaining, weeksRemaining, yearProgress;
 
@@ -59,4 +59,52 @@ function updateTimeWidget() {
   if (weeksEl) weeksEl.textContent = weeksRemaining;
   if (progressEl) progressEl.style.width = yearProgress + '%';
   if (progressTextEl) progressTextEl.textContent = yearProgress + '% of 2026 complete';
+}
+
+function updateHalfYearStatus() {
+  const now = new Date();
+  const msPerDay = 24 * 60 * 60 * 1000;
+
+  // H1: Jan 1 - Jun 30, 2026
+  const h1Start = new Date(2026, 0, 1);
+  const h1End = new Date(2026, 5, 30, 23, 59, 59);
+
+  // H2: Jul 1 - Dec 31, 2026
+  const h2Start = new Date(2026, 6, 1);
+  const h2End = new Date(2026, 11, 31, 23, 59, 59);
+
+  const h1El = document.getElementById('h1-time-remaining');
+  const h2El = document.getElementById('h2-time-remaining');
+
+  if (h1El) {
+    if (now < h1Start) {
+      const daysUntil = Math.ceil((h1Start - now) / msPerDay);
+      h1El.textContent = `Starts in ${daysUntil} days`;
+      h1El.className = 'half-time-remaining upcoming';
+    } else if (now > h1End) {
+      h1El.textContent = 'Completed';
+      h1El.className = 'half-time-remaining completed';
+    } else {
+      const daysRemaining = Math.ceil((h1End - now) / msPerDay);
+      const weeksRemaining = Math.ceil(daysRemaining / 7);
+      h1El.textContent = `${weeksRemaining} weeks remaining`;
+      h1El.className = 'half-time-remaining active';
+    }
+  }
+
+  if (h2El) {
+    if (now < h2Start) {
+      const daysUntil = Math.ceil((h2Start - now) / msPerDay);
+      h2El.textContent = `Starts in ${daysUntil} days`;
+      h2El.className = 'half-time-remaining upcoming';
+    } else if (now > h2End) {
+      h2El.textContent = 'Completed';
+      h2El.className = 'half-time-remaining completed';
+    } else {
+      const daysRemaining = Math.ceil((h2End - now) / msPerDay);
+      const weeksRemaining = Math.ceil(daysRemaining / 7);
+      h2El.textContent = `${weeksRemaining} weeks remaining`;
+      h2El.className = 'half-time-remaining active';
+    }
+  }
 }

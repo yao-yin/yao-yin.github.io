@@ -8,14 +8,14 @@ layout: default
       <time datetime="{{ page.date | date_to_xmlschema }}">
         {{ page.date | date: "%B %d, %Y" }}
       </time>
-      {% if page.categories.size > 0 %}
-        <span class="post-categories">
-          {% for category in page.categories %}
-            <span class="category">{{ category }}</span>
-          {% endfor %}
-        </span>
-      {% endif %}
     </div>
+    {% if page.tags.size > 0 %}
+      <div class="post-tags">
+        {% for tag in page.tags %}
+          <a href="{{ '/tags' | relative_url }}#{{ tag | slugify }}" class="tag">{{ tag }}</a>
+        {% endfor %}
+      </div>
+    {% endif %}
   </header>
 
   <div class="post-content">

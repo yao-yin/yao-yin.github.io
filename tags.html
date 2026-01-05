@@ -1,0 +1,44 @@
+---
+layout: default
+title: Tags
+permalink: /tags/
+---
+<section class="tags-section">
+  <h1 class="page-title">Tags</h1>
+
+  {% assign all_tags = site.posts | map: "tags" | flatten | uniq | sort %}
+
+  <div class="tags-cloud">
+    {% for tag in all_tags %}
+      {% assign tag_count = 0 %}
+      {% for post in site.posts %}
+        {% if post.tags contains tag %}
+          {% assign tag_count = tag_count | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+      <a href="#{{ tag | slugify }}" class="tag-cloud-item">{{ tag }} <span class="tag-count">({{ tag_count }})</span></a>
+    {% endfor %}
+  </div>
+
+  {% for tag in all_tags %}
+    <div class="tag-section" id="{{ tag | slugify }}">
+      <h2 class="tag-title">{{ tag }}</h2>
+      <ul class="post-list">
+        {% for post in site.posts %}
+          {% if post.tags contains tag %}
+            <li class="post-item">
+              <h3 class="post-item-title">
+                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+              </h3>
+              <div class="post-item-meta">
+                <time datetime="{{ post.date | date_to_xmlschema }}">
+                  {{ post.date | date: "%B %d, %Y" }}
+                </time>
+              </div>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
+  {% endfor %}
+</section>

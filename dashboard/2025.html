@@ -1,0 +1,45 @@
+---
+layout: dashboard
+title: 2025 Goals Dashboard
+permalink: /dashboard/2025/
+---
+<header class="dashboard-header">
+  <h1 class="dashboard-title">2025 Goals (Archived)</h1>
+  <p class="dashboard-subtitle">Full year review</p>
+</header>
+
+{% for year_data in site.data.archive %}
+  {% if year_data.year == 2025 %}
+    {% for period in year_data.periods %}
+      <section class="goals-section archive-period-section">
+        <div class="period-header-bar">
+          <h2 class="goals-title">{{ period.name }}</h2>
+          <span class="period-status {{ period.status }}">{{ period.status | capitalize }}</span>
+        </div>
+        <p class="period-dates-text">{{ period.start }} to {{ period.end }}</p>
+
+        <div class="goals-grid">
+          {% for goal in period.goals %}
+            {% assign percentage = goal.current | times: 100.0 | divided_by: goal.target | round %}
+            <div class="goal-card">
+              <div class="goal-header">
+                <span class="goal-name">{{ goal.name }}</span>
+                <span class="goal-percentage {% if percentage >= 100 %}complete{% elsif percentage >= 75 %}good{% elsif percentage >= 50 %}partial{% else %}low{% endif %}">{{ percentage }}%</span>
+              </div>
+
+              <div class="goal-progress">
+                <div class="progress-bar-container">
+                  <div class="progress-bar {% if percentage >= 100 %}complete{% elsif percentage >= 75 %}good{% elsif percentage >= 50 %}partial{% else %}low{% endif %}" style="width: {{ percentage }}%"></div>
+                </div>
+              </div>
+
+              <div class="goal-stats">
+                {{ goal.current }} / {{ goal.target }} {{ goal.unit }}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </section>
+    {% endfor %}
+  {% endif %}
+{% endfor %}

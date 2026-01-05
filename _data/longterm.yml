@@ -1,0 +1,62 @@
+# Long-term Goals
+# Goals that span multiple years or have no specific deadline
+
+five_year:
+  name: "5-Year Goals (2026-2030)"
+  goals:
+    - name: "Build a Successful Side Business"
+      target: 100
+      current: 10
+      unit: "% complete"
+      notes: "From idea to sustainable income"
+
+    - name: "Achieve Financial Milestone"
+      target: 100
+      current: 15
+      unit: "% progress"
+      notes: "Savings and investment targets"
+
+    - name: "Master 3 New Technical Skills"
+      target: 3
+      current: 0
+      unit: "skills"
+      notes: "Deep expertise, not surface level"
+
+    - name: "Publish a Book or Major Project"
+      target: 1
+      current: 0
+      unit: "published"
+      notes: "Technical book or significant open source project"
+
+life_goals:
+  name: "Life Goals / Bucket List"
+  goals:
+    - name: "Visit 30 Countries"
+      target: 30
+      current: 8
+      unit: "countries"
+      notes: "Meaningful travel experiences"
+
+    - name: "Run a Marathon"
+      target: 1
+      current: 0
+      unit: "completed"
+      notes: "Full 42.195km marathon"
+
+    - name: "Learn a Third Language"
+      target: 1
+      current: 0
+      unit: "language"
+      notes: "Conversational fluency"
+
+    - name: "Mentor 10 People"
+      target: 10
+      current: 2
+      unit: "mentees"
+      notes: "Meaningful mentorship relationships"
+
+    - name: "Give a Conference Talk"
+      target: 1
+      current: 0
+      unit: "talks"
+      notes: "Share knowledge at a major conference"

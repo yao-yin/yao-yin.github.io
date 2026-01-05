@@ -1,0 +1,77 @@
+---
+layout: dashboard
+title: Long-term Goals Dashboard
+permalink: /dashboard/long-term/
+---
+<header class="dashboard-header">
+  <h1 class="dashboard-title">Long-term Goals</h1>
+  <p class="dashboard-subtitle">Multi-year ambitions and life goals</p>
+</header>
+
+<!-- 5-Year Goals -->
+<section class="goals-section longterm-section">
+  <div class="longterm-header">
+    <h2 class="goals-title">{{ site.data.longterm.five_year.name }}</h2>
+    <span class="longterm-badge">5-Year</span>
+  </div>
+
+  <div class="goals-grid">
+    {% for goal in site.data.longterm.five_year.goals %}
+      {% assign percentage = goal.current | times: 100.0 | divided_by: goal.target | round %}
+      <div class="goal-card longterm-card">
+        <div class="goal-header">
+          <span class="goal-name">{{ goal.name }}</span>
+          <span class="goal-percentage">{{ percentage }}%</span>
+        </div>
+
+        <div class="goal-progress">
+          <div class="progress-bar-container">
+            <div class="progress-bar" style="width: {{ percentage }}%"></div>
+          </div>
+        </div>
+
+        <div class="goal-stats">
+          {{ goal.current }} / {{ goal.target }} {{ goal.unit }}
+        </div>
+
+        {% if goal.notes %}
+          <div class="goal-notes">{{ goal.notes }}</div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- Life Goals -->
+<section class="goals-section longterm-section">
+  <div class="longterm-header">
+    <h2 class="goals-title">{{ site.data.longterm.life_goals.name }}</h2>
+    <span class="longterm-badge life">Lifetime</span>
+  </div>
+
+  <div class="goals-grid">
+    {% for goal in site.data.longterm.life_goals.goals %}
+      {% assign percentage = goal.current | times: 100.0 | divided_by: goal.target | round %}
+      <div class="goal-card longterm-card">
+        <div class="goal-header">
+          <span class="goal-name">{{ goal.name }}</span>
+          <span class="goal-percentage">{{ percentage }}%</span>
+        </div>
+
+        <div class="goal-progress">
+          <div class="progress-bar-container">
+            <div class="progress-bar" style="width: {{ percentage }}%"></div>
+          </div>
+        </div>
+
+        <div class="goal-stats">
+          {{ goal.current }} / {{ goal.target }} {{ goal.unit }}
+        </div>
+
+        {% if goal.notes %}
+          <div class="goal-notes">{{ goal.notes }}</div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</section>

@@ -1,0 +1,105 @@
+---
+layout: dashboard
+title: 2026 H2 Goals Dashboard
+permalink: /dashboard/2026-h2/
+---
+<header class="dashboard-header">
+  <h1 class="dashboard-title">2026 Second Half Goals</h1>
+  <p class="dashboard-subtitle">July 1 - December 31, 2026</p>
+</header>
+
+<div class="time-widget">
+  <div class="current-date" id="current-date">Loading...</div>
+
+  <div class="year-progress">
+    <div class="year-stats">
+      <div class="stat">
+        <div class="stat-value" id="days-remaining">--</div>
+        <div class="stat-label">Days Remaining</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value" id="weeks-remaining">--</div>
+        <div class="stat-label">Weeks Remaining</div>
+      </div>
+    </div>
+
+    <div class="progress-bar-container">
+      <div class="progress-bar" id="period-progress-bar" style="width: 0%"></div>
+    </div>
+    <div class="stat-label" id="period-progress-text">Calculating...</div>
+  </div>
+</div>
+
+<section class="goals-section">
+  <h2 class="goals-title">My Goals</h2>
+
+  {% if site.data.goals.h2.goals.size > 0 %}
+    <div class="goals-grid">
+      {% for goal in site.data.goals.h2.goals %}
+        {% assign percentage = goal.current | times: 100.0 | divided_by: goal.target | round %}
+        <div class="goal-card">
+          <div class="goal-header">
+            <span class="goal-name">{{ goal.name }}</span>
+            <span class="goal-percentage">{{ percentage }}%</span>
+          </div>
+
+          <div class="goal-progress">
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: {{ percentage }}%"></div>
+            </div>
+          </div>
+
+          <div class="goal-stats">
+            {{ goal.current }} / {{ goal.target }} {{ goal.unit }}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="empty-state">
+      <p>No goals defined yet. Add goals in <code>_data/goals.yml</code></p>
+    </div>
+  {% endif %}
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  updatePeriodWidget('2026-07-01', '2026-12-31', 'H2 2026');
+});
+
+function updatePeriodWidget(startStr, endStr, periodName) {
+  const now = new Date();
+  const start = new Date(startStr);
+  const end = new Date(endStr + 'T23:59:59');
+
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  document.getElementById('current-date').textContent = now.toLocaleDateString('en-US', options);
+
+  const msPerDay = 24 * 60 * 60 * 1000;
+  let daysRemaining, weeksRemaining, progress;
+
+  if (now < start) {
+    const daysUntil = Math.ceil((start - now) / msPerDay);
+    daysRemaining = Math.ceil((end - start) / msPerDay);
+    weeksRemaining = Math.ceil(daysRemaining / 7);
+    progress = 0;
+    document.getElementById('period-progress-text').textContent = `Starts in ${daysUntil} days`;
+  } else if (now > end) {
+    daysRemaining = 0;
+    weeksRemaining = 0;
+    progress = 100;
+    document.getElementById('period-progress-text').textContent = `${periodName} completed`;
+  } else {
+    daysRemaining = Math.ceil((end - now) / msPerDay);
+    weeksRemaining = Math.ceil(daysRemaining / 7);
+    const totalDays = Math.ceil((end - start) / msPerDay);
+    const daysPassed = totalDays - daysRemaining;
+    progress = Math.round((daysPassed / totalDays) * 100);
+    document.getElementById('period-progress-text').textContent = `${progress}% of ${periodName} complete`;
+  }
+
+  document.getElementById('days-remaining').textContent = daysRemaining;
+  document.getElementById('weeks-remaining').textContent = weeksRemaining;
+  document.getElementById('period-progress-bar').style.width = progress + '%';
+}
+</script>

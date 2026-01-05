@@ -1,23 +1,53 @@
-# 2026 Goals
+# 2026 Goals - Organized by Half Year
 # Edit this file to update your goals and progress
 # Push to GitHub to see changes on your site
 
-- name: "Read Books"
-  target: 24
-  current: 0
-  unit: "books"
+h1:
+  name: "First Half 2026"
+  start: "2026-01-01"
+  end: "2026-06-30"
+  goals:
+    - name: "Read Books"
+      target: 12
+      current: 0
+      unit: "books"
 
-- name: "Write Blog Posts"
-  target: 52
-  current: 1
-  unit: "posts"
+    - name: "Write Blog Posts"
+      target: 26
+      current: 1
+      unit: "posts"
 
-- name: "Exercise Sessions"
-  target: 150
-  current: 0
-  unit: "sessions"
+    - name: "Exercise Sessions"
+      target: 75
+      current: 0
+      unit: "sessions"
 
-- name: "Learn New Skills"
-  target: 12
-  current: 0
-  unit: "skills"
+    - name: "Learn New Skills"
+      target: 6
+      current: 0
+      unit: "skills"
+
+h2:
+  name: "Second Half 2026"
+  start: "2026-07-01"
+  end: "2026-12-31"
+  goals:
+    - name: "Read Books"
+      target: 12
+      current: 0
+      unit: "books"
+
+    - name: "Write Blog Posts"
+      target: 26
+      current: 0
+      unit: "posts"
+
+    - name: "Exercise Sessions"
+      target: 75
+      current: 0
+      unit: "sessions"
+
+    - name: "Learn New Skills"
+      target: 6
+      current: 0
+      unit: "skills"

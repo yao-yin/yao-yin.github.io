@@ -1,0 +1,56 @@
+# Dashboard Archive - Past goal tracking periods
+# Each entry represents a snapshot of goals at a specific time
+
+- year: 2025
+  periods:
+    - name: "H1 2025"
+      start: "2025-01-01"
+      end: "2025-06-30"
+      status: "completed"
+      goals:
+        - name: "Read Books"
+          target: 10
+          current: 8
+          unit: "books"
+        - name: "Exercise Sessions"
+          target: 50
+          current: 45
+          unit: "sessions"
+        - name: "Side Projects"
+          target: 2
+          current: 2
+          unit: "projects"
+
+    - name: "H2 2025"
+      start: "2025-07-01"
+      end: "2025-12-31"
+      status: "completed"
+      goals:
+        - name: "Read Books"
+          target: 12
+          current: 11
+          unit: "books"
+        - name: "Exercise Sessions"
+          target: 60
+          current: 52
+          unit: "sessions"
+        - name: "Learn New Skills"
+          target: 4
+          current: 3
+          unit: "skills"
+
+- year: 2024
+  periods:
+    - name: "H2 2024"
+      start: "2024-07-01"
+      end: "2024-12-31"
+      status: "completed"
+      goals:
+        - name: "Read Books"
+          target: 6
+          current: 6
+          unit: "books"
+        - name: "Blog Posts"
+          target: 10
+          current: 7
+          unit: "posts"
