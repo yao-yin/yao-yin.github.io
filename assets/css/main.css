@@ -434,6 +434,38 @@ img {
   color: var(--color-text-secondary);
 }
 
+/* Sidebar Weekly Link */
+.sidebar-weekly-link {
+  display: block;
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-hover));
+  color: white;
+  border-radius: var(--radius);
+  padding: var(--spacing-md);
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sidebar-weekly-link:hover {
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.sidebar-weekly-label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.9;
+  margin-bottom: var(--spacing-xs);
+}
+
+.sidebar-weekly-info {
+  display: block;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
 /* Weekly Note in Sidebar */
 .weekly-note {
   font-size: 0.875rem;

@@ -1,0 +1,86 @@
+---
+layout: default
+title: Blog
+permalink: /blog/
+---
+<section class="blog-section">
+  <div class="blog-header">
+    <h1 class="page-title">Blog</h1>
+    <div class="search-box">
+      <input type="text" id="search-input" placeholder="Search posts..." />
+    </div>
+  </div>
+
+  {% if site.posts.size > 0 %}
+    <div class="tag-filter">
+      <span class="filter-label">Filter by tag:</span>
+      <button class="tag-btn active" data-tag="all">All</button>
+      {% assign all_tags = site.posts | map: "tags" | flatten | uniq | sort %}
+      {% for tag in all_tags %}
+        <button class="tag-btn" data-tag="{{ tag | slugify }}">{{ tag }}</button>
+      {% endfor %}
+    </div>
+
+    <ul class="post-list" id="post-list">
+      {% for post in site.posts %}
+        <li class="post-item" data-tags="{% for tag in post.tags %}{{ tag | slugify }} {% endfor %}">
+          <h2 class="post-item-title">
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          </h2>
+          <div class="post-item-meta">
+            <time datetime="{{ post.date | date_to_xmlschema }}">
+              {{ post.date | date: "%B %d, %Y" }}
+            </time>
+            {% if post.tags.size > 0 %}
+              <span class="post-item-tags">
+                {% for tag in post.tags %}
+                  <span class="tag-small">{{ tag }}</span>
+                {% endfor %}
+              </span>
+            {% endif %}
+          </div>
+          {% if post.excerpt %}
+            <p class="post-item-excerpt">{{ post.excerpt | strip_html | truncate: 160 }}</p>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <div class="empty-state">
+      <p>No posts yet. Check back soon!</p>
+    </div>
+  {% endif %}
+</section>
+
+<script>
+// Tag filtering
+document.querySelectorAll('.tag-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const tag = this.dataset.tag;
+    document.querySelectorAll('.tag-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+
+    document.querySelectorAll('.post-item').forEach(post => {
+      if (tag === 'all' || post.dataset.tags.includes(tag)) {
+        post.style.display = '';
+      } else {
+        post.style.display = 'none';
+      }
+    });
+  });
+});
+
+// Search
+document.getElementById('search-input').addEventListener('input', function() {
+  const query = this.value.toLowerCase();
+  document.querySelectorAll('.post-item').forEach(post => {
+    const title = post.querySelector('.post-item-title').textContent.toLowerCase();
+    const excerpt = post.querySelector('.post-item-excerpt')?.textContent.toLowerCase() || '';
+    if (title.includes(query) || excerpt.includes(query)) {
+      post.style.display = '';
+    } else {
+      post.style.display = 'none';
+    }
+  });
+});
+</script>
